@@ -1,0 +1,27 @@
+.container {
+  padding: 15px;
+  text-align: center;
+  max-width: 1500px;
+  height: calc(100% - 56px);
+}
+.pola-button {
+  margin: 0 auto;
+}
+.card {
+  min-width: 90%;
+}
+.example-container {
+  display: flex;
+  flex-direction: column;
+  max-height: 500px;
+  min-width: 100%;
+}
+a {
+  cursor: pointer;
+}
+.create-survey-button {
+  margin: 20px 0 50px 0;
+}
+.table-row-style:hover {
+  background: #ececec;
+}

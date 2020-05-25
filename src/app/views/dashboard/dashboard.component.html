@@ -1,0 +1,90 @@
+<div class="container">
+      <div fxLayout="row" fxLayoutAlign="center center" class="content">
+        <mat-card class="card" >
+          <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column" fxLayoutAlign="center">
+            <h3 *ngIf="role === 'user'">Twoje ankiety</h3>
+            <h3 *ngIf="role === 'admin'">Zarządzanie ankietami </h3>
+          </mat-card-title>
+          <mat-card-content>
+            <div class="example-container mat-elevation-z8">
+              <mat-table #table [dataSource]="surveys" *ngIf="surveys">
+                <ng-container matColumnDef="Nazwa ankiety">
+                  <mat-header-cell *matHeaderCellDef fxFlex="30%"> Nazwa ankiety </mat-header-cell>
+                  <mat-cell *matCellDef="let element" data-label="Nazwa ankiety" fxFlex="30%"> {{element.title}} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="Ilość pytań">
+                  <mat-header-cell *matHeaderCellDef fxFlex="10%"> Ilość pytań </mat-header-cell>
+                  <mat-cell *matCellDef="let element" data-label="Ilość pytań" fxFlex="10%"> {{element.question.length}} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="Twórca">
+                  <mat-header-cell *matHeaderCellDef fxFlex="30%"> Twórca </mat-header-cell>
+                  <mat-cell *matCellDef="let element" data-label="Twórca" fxFlex="30%"> {{element.email}} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="Link">
+                  <mat-header-cell *matHeaderCellDef> Link do ankiety </mat-header-cell>
+                  <mat-cell *matCellDef="let element" data-label="Link do ankiety">
+                    <button mat-stroked-button color="primary" class="copy-button" ngxClipboard [cbContent]="link+element._id">Skopiuj</button>
+                  </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="delete">
+                  <mat-header-cell *matHeaderCellDef fxFlex="20%"></mat-header-cell>
+                  <mat-cell *matCellDef="let element" fxFlex="20%">
+                    <a type="button">
+                      <mat-icon class="icon" (click)="onDelete(element._id)">delete</mat-icon>
+                    </a>
+                    <button mat-stroked-button color="primary" class="pola-button" (click)="onDetails(element._id)">Szczegóły</button>
+                  </mat-cell>
+                </ng-container>
+                <mat-header-row *matHeaderRowDef="displayedSurveyColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedSurveyColumns;" class="table-row-style"></mat-row>
+              </mat-table>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+  <button mat-raised-button color="primary" class="create-survey-button" (click)="onCreateSurvey()">Dodaj nową ankietę</button>
+
+  <div fxLayout="row" fxLayoutAlign="center center" class="content" *ngIf="role === 'admin'">
+    <mat-card class="card" >
+      <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column" fxLayoutAlign="center">
+        <h3>Zarządzanie użytkownikami</h3>
+      </mat-card-title>
+      <mat-card-content>
+        <div class="example-container mat-elevation-z8">
+          <mat-table #table [dataSource]="users" *ngIf="users">
+            <ng-container matColumnDef="Imię">
+              <mat-header-cell *matHeaderCellDef> Imię </mat-header-cell>
+              <mat-cell *matCellDef="let element" data-label="Imię"> {{element.first_name}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="Nazwisko">
+              <mat-header-cell *matHeaderCellDef> Nazwisko </mat-header-cell>
+              <mat-cell *matCellDef="let element" data-label="Nazwisko"> {{element.last_name}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="Email">
+              <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+              <mat-cell *matCellDef="let element" data-label="Email" > {{element.email}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="Rola">
+              <mat-header-cell *matHeaderCellDef> Rola </mat-header-cell>
+              <mat-cell *matCellDef="let element" data-label="Rola"> {{element.role}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="delete">
+              <mat-header-cell *matHeaderCellDef></mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                <a type="button">
+                  <mat-icon class="icon" (click)="onUserDelete(element)">delete</mat-icon>
+                </a>
+              </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedUserColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedUserColumns;" class="table-row-style"></mat-row>
+          </mat-table>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+</div>
+
+<app-footer></app-footer>
+

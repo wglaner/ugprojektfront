@@ -1,0 +1,43 @@
+
+<div class="content">
+<div class="jumbotron">
+  <h1 class="display-4">Witaj w serwisie Surveys.pl!</h1>
+  <p class="lead">To jest prosta strona umożliwiająca tworzenie ankiet i badania satysfakcji twoich klientów oraz znajomych!</p>
+  <hr class="my-4">
+  <p>Dołącz do nas już teraz, kliknij w link aby się zarejestrować!</p>
+  <a class="btn btn-primary btn-lg" (click)="onSignUp()" role="button">Zarejestruj się</a>
+</div>
+
+<ngb-carousel *ngIf="images">
+  <ng-template ngbSlide>
+    <div class="picsum-img-wrapper">
+      <img [src]="images[0]" alt="Random first slide"  width="100%">
+    </div>
+    <div class="carousel-caption">
+      <h3>Klucz do sukcesu!</h3>
+      <p>Daj się wciągnąć naszej ofercie i otwórz przed sobą drzwi do nowych rozwiązań.</p>
+    </div>
+  </ng-template>
+  <ng-template ngbSlide>
+    <div class="picsum-img-wrapper">
+      <img [src]="images[1]" alt="Random second slide" width="100%">
+    </div>
+    <div class="carousel-caption">
+      <h3 class="black-text">Exploruj razem z nami!</h3>
+      <p class="black-text">Ludzie od wieków rozwiązują zagadki, my rozwiążemy je za Ciebie!.</p>
+    </div>
+  </ng-template>
+  <ng-template ngbSlide>
+    <div class="picsum-img-wrapper">
+      <img [src]="images[2]" alt="Random third slide" width="100%">
+    </div>
+    <div class="carousel-caption">
+      <h3>Wiedza i dośwaidczenie!</h3>
+      <p>Już nigdy nie poczujesz się zagubiony, dostarczymy Ci nasz bagaż doświadczeń.</p>
+    </div>
+  </ng-template>
+</ngb-carousel>
+  <app-footer></app-footer>
+
+</div>
+

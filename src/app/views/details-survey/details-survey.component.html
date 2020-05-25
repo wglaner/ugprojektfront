@@ -1,0 +1,15 @@
+<h2 *ngIf="!answerNumber">Jeszcze nikt nie wypełnił ankiety!</h2>
+<h2 *ngIf="answerNumber">{{survey[0].title}}</h2>
+<div class="content" *ngIf="answerNumber">
+  <div class="chart-wrapper"  *ngFor="let chart of charts">
+    <h3>{{chart.questionTitle}}</h3>
+    <canvas baseChart
+            [data]="chart.answerCount"
+            [labels]="chart.answerLabel"
+            [chartType]="pieChartType"
+            [options]="pieChartOptions"
+            [plugins]="pieChartPlugins"
+            [legend]="pieChartLegend">
+    </canvas>
+  </div>
+</div>

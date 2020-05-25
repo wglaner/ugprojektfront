@@ -1,0 +1,27 @@
+<mat-toolbar color="primary">
+
+  <span class="Surveys" routerLink="home">Surveys</span>
+
+  <span class="example-spacer"></span>
+  <div fxShow="true" fxHide.lt-md="true" fxFlex="100%">
+    <!-- The following menu items will be hidden on both SM and XS screen sizes -->
+    <a routerLink="home" mat-button>Home</a>
+    <a routerLink="popular-surveys" mat-button>Popularne ankiety</a>
+    <a routerLink="contact" mat-button>Kontakt</a>
+
+    <span fxFlex=""></span>
+    <a *ngIf="!isUserLoggedIn" routerLink="login" mat-button>Zaloguj</a>
+    <a *ngIf="!isUserLoggedIn" routerLink="signup" mat-button>Zarejestruj</a>
+    <a *ngIf="isUserLoggedIn && role === 'user'" routerLink="dashboard" mat-button>Panel użytkownika</a>
+    <a *ngIf="isUserLoggedIn && role === 'admin'" routerLink="dashboard" mat-button>Panel administratora</a>
+    <a *ngIf="isUserLoggedIn" routerLink="login" (click)="onLogout()" mat-button>Wyloguj</a>
+  </div>
+
+  <div fxShow="true" fxHide.gt-sm="true" fxFlex fxLayoutAlign="end center">
+    <i (click)="onToggleSidenav()" class="material-icons">menu</i>
+  </div>
+
+
+</mat-toolbar>
+
+

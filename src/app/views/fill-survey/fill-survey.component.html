@@ -1,0 +1,28 @@
+<div class="content">
+  <div class="container">
+    <h3>{{survey[0].title}}</h3>
+  </div>
+  <ol class="list-style">
+    <li *ngFor="let questionCtrl of survey[0].question; let i = index">
+      <div>
+        <div>
+          <div [ngSwitch]="questionCtrl.type">
+            <div *ngSwitchCase="'Single choice'">
+              <label id="example-radio-group-label">{{questionCtrl.contents}}</label>
+              <mat-radio-group
+                aria-labelledby="example-radio-group-label"
+                class="example-radio-group"
+                [(ngModel)]="filledQuestion[i]">
+                <mat-radio-button class="example-radio-button" *ngFor="let option of questionCtrl.answer" [value]="option.option">
+                  {{option.option}}
+                </mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ol>
+  <div *ngIf="notFilled"><h4>Musisz odpowiedzieć na wszystkie pytania!</h4></div>
+  <button mat-raised-button (click)="addAnswer()"> Wyślij odpowiedzi </button>
+</div>
